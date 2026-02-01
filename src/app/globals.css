@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
+/* ------------------- Root / Theme Variables ------------------- */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --card: #f5f5f5;
+  --text: #171717;
+  --muted: #888888;
+  --accent: #3b82f6; /* Tailwind blue-500 */
 }
 
 @theme inline {
@@ -12,15 +17,84 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark mode variables */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --card: #1a1a1a;
+    --text: #ededed;
+    --muted: #bbbbbb;
+    --accent: #3b82f6;
   }
 }
 
+/* ------------------- Body / Base ------------------- */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ------------------- Inputs / Buttons ------------------- */
+.input {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--muted);
+  border-radius: 0.5rem;
+  background: var(--card);
+  color: var(--text);
+  outline: none;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.input:focus {
+  border-color: var(--accent);
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #2563eb; /* Tailwind blue-600 */
+}
+
+/* ------------------- Scrollbar Styling ------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--card);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+/* ------------------- Utility / Extras ------------------- */
+.rounded-lg {
+  border-radius: 1rem;
+}
+
+.shadow-md {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Smooth transition for theme change */
+* {
+  transition: background 0.3s ease, color 0.3s ease;
 }
