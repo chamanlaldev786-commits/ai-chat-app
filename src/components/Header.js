@@ -1,20 +1,17 @@
 "use client";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useSearch } from "../context/SearchContext";
 
-export default function Header({ onSearch, onFilter }) {
+export default function Header() {
   const router = useRouter();
-  const [search, setSearch] = useState("");
-  const [level, setLevel] = useState("ALL");
+  const { search, setSearch, level, setLevel } = useSearch();
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
-    onSearch && onSearch(e.target.value);
   };
 
   const handleFilter = (e) => {
     setLevel(e.target.value);
-    onFilter && onFilter(e.target.value);
   };
 
   return (

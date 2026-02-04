@@ -5,11 +5,11 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { courses as allCourses } from "@/data/courses";
+import { useSearch } from "@/context/SearchContext";
 
 export default function Courses() {
   const router = useRouter();
-  const [searchText, setSearchText] = useState("");
-  const [filterLevel, setFilterLevel] = useState("ALL");
+  const { search: searchText, setSearch: setSearchText, level: filterLevel, setLevel: setFilterLevel } = useSearch();
   const [likedCourses, setLikedCourses] = useState([]);
 
   // 🌟 Hydration safe

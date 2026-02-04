@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { login } from "../../../utils/fakeAuth";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -31,7 +32,7 @@ export default function LoginPage() {
     }
 
     // Fake auth
-    localStorage.setItem("user", JSON.stringify({ email }));
+    login({ email });
     router.push("/courses"); // redirect to courses after login
   }
 

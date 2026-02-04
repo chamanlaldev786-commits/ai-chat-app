@@ -32,7 +32,7 @@ export default function SignupPage() {
     }
 
     // Fake auth
-    login(email); // saves user in localStorage
+    login({ email }); // saves user in localStorage
     router.push("/courses"); // redirect after signup
   }
 

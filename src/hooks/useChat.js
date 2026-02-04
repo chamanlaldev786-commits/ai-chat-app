@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getAIReply } from "../utils/aiBot";
 
 export function useChat() {
+  const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState(() => {
     if (typeof window !== "undefined") {
       return JSON.parse(localStorage.getItem("chat_messages")) || [];
@@ -22,6 +23,7 @@ export function useChat() {
     };
 
     setMessages((prev) => [...prev, userMsg]);
+    setIsTyping(true);
 
     setTimeout(() => {
       const aiMsg = {
@@ -30,8 +32,9 @@ export function useChat() {
         text: getAIReply(msg.text),
       };
       setMessages((prev) => [...prev, aiMsg]);
+      setIsTyping(false);
     }, 900);
   };
 
-  return { messages, sendMessage };
+  return { messages, sendMessage, isTyping };
 }

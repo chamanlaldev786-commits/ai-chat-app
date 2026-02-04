@@ -1,10 +1,12 @@
 // src/app/courses/[courseId]/page.js
 "use client";
 
+import React from "react";
 import { courses } from "@/data/courses";
 
 export default function CourseDetail({ params }) {
-  const course = courses.find((c) => c.id === params.courseId);
+  const resolvedParams = React.use(params);
+  const course = courses.find((c) => c.id === resolvedParams.courseId);
 
   // 🌟 Hydration safe
   const [mounted, setMounted] = React.useState(false);

@@ -1,7 +1,17 @@
-// src/utils/fakeAuth.js
-export const getUser = () => {
+export const login = (userData) => {
   if (typeof window !== "undefined") {
-    return localStorage.getItem("user") || null;
+    localStorage.setItem("user", JSON.stringify(userData));
   }
-  return null;
+};
+
+export const logout = () => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("user");
+  }
+};
+
+export const getUser = () => {
+  if (typeof window === "undefined") return null;
+  const user = localStorage.getItem("user");
+  return user ? JSON.parse(user) : null;
 };
